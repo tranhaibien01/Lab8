@@ -1,40 +1,34 @@
 #include<stdio.h>
-#include<string.h>
-#include<stdbool.h>
-#define SIZE 80
+#include<stdlib.h>
 
-bool checkSymmetricString(char* str) {
-
-	int size = strlen(str) - 1;
-
-	for (int  i = 0; i < size; i++)
+void getElementArray(const int* array, int size) {
+	for (int i = 0; i < size; i++)
 	{
-		if (str[i] != str[size - 1 - i]) {
-			return false;
-		}
+		printf("array[%d] = ", i);
+		scanf("%d", array + i);
 	}
 
-	return true;
+}
+
+void showElementArray(const int* const array, const int size) {
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d ", array[i]);
+	}
+
 }
 
 int main() {
+	int* array;
+	int size;
+	printf("\nNhap kich thuoc cua mang: ");
+	scanf("%d", &size);
 
-	char str[SIZE];
+	array = (int*)malloc(size * sizeof(int));
+	getElementArray(array, size);
+	printf("\nTat ca cac phan tu mang: ");
+	showElementArray(array, size);
 
-	printf("\nEnter the string: ");
-	
-	fgets(str, 79, stdin);
-
-	printf("\nThe string that you just enter from keyboard: %s \n" ,str );
-	
-	bool isSymmetricString = checkSymmetricString(str);
-
-	if (isSymmetricString == true) {
-
-		printf("\nThe string is symmetric\n");
-	}
-	else {
-		printf("\nThe string is not symmetric.\n");
-	}
+	free(array);
 	return 0;
 }
